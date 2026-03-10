@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyCircle — Learn Together, Grow Together</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">◎</span>
+        StudyCircle
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#interactive">Learning</a></li>
+        <li><a href="#leaderboard">Leaderboard</a></li>
+      </ul>
+      <a href="#cta" class="nav-cta">Join Free</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+      <div class="grid-lines"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Now available for all colleges
+      </div>
+      <h1 class="hero-title">
+        Learn Together,<br/>
+        <span class="hero-title-accent">Grow Together</span>
+      </h1>
+      <p class="hero-desc">
+        StudyCircle connects college students of different skill levels into powerful 3-member study groups. Beginners, intermediates, and advanced learners collaborate, teach, and grow — every single session.
+      </p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn btn-primary">
+          <span>Join Study Group</span>
+          <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+        <a href="#how-it-works" class="btn btn-ghost">See How It Works</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num" data-target="12400">0</span>
+          <span class="stat-label">Students</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num" data-target="340">0</span>
+          <span class="stat-label">Colleges</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num" data-target="98">0</span>
+          <span class="stat-label">% Satisfaction</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <div class="phone-header">
+            <div class="phone-avatar-row">
+              <div class="av av-a" title="Advanced">A</div>
+              <div class="av av-i" title="Intermediate">I</div>
+              <div class="av av-b" title="Beginner">B</div>
+            </div>
+            <p class="phone-group-label">CS301 — Group #47</p>
+          </div>
+          <div class="phone-chat">
+            <div class="chat-bubble bubble-a">Let me explain hash maps with an example 🔥</div>
+            <div class="chat-bubble bubble-i">Oh! That makes sense now 💡</div>
+            <div class="chat-bubble bubble-b">Can you show it in Python?</div>
+            <div class="chat-bubble bubble-a">Sure! dict = {key: value}</div>
+          </div>
+          <div class="phone-timer">
+            <div class="timer-ring">
+              <svg viewBox="0 0 60 60">
+                <circle cx="30" cy="30" r="26" stroke="#1a1a2e" stroke-width="3" fill="none"/>
+                <circle cx="30" cy="30" r="26" stroke="#7C3AED" stroke-width="3" fill="none"
+                  stroke-dasharray="163" stroke-dashoffset="40" stroke-linecap="round"/>
+              </svg>
+              <span class="timer-text">24:13</span>
+            </div>
+            <span class="timer-label">Session Time</span>
+          </div>
+        </div>
+      </div>
+      <div class="floating-card card-quiz">
+        <span class="fc-icon">🧠</span>
+        <div>
+          <p class="fc-title">Quiz Ready!</p>
+          <p class="fc-sub">Post-session test in 5 min</p>
+        </div>
+      </div>
+      <div class="floating-card card-rank">
+        <span class="fc-icon">🏆</span>
+        <div>
+          <p class="fc-title">#1 This Week</p>
+          <p class="fc-sub">CS Department</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section features" id="features">
+    <div class="container">
+      <div class="section-tag">Core Features</div>
+      <h2 class="section-title">Everything you need to <span class="accent">study smarter</span></h2>
+      <p class="section-sub">Six powerful features designed to make collaborative learning seamless, engaging, and effective for every student.</p>
+      <div class="features-grid">
+
+        <div class="feature-card" data-delay="0">
+          <div class="feature-icon-wrap" style="--c:#7C3AED">
+            <span class="feature-icon">🪪</span>
+          </div>
+          <h3>Student Login</h3>
+          <p>Sign in using your college student ID and department. Your identity is verified instantly — no long sign-up forms needed.</p>
+        </div>
+
+        <div class="feature-card" data-delay="1">
+          <div class="feature-icon-wrap" style="--c:#059669">
+            <span class="feature-icon">📚</span>
+          </div>
+          <h3>Course Selection</h3>
+          <p>Browse and select courses available for your department. The system curates content specific to your academic curriculum.</p>
+        </div>
+
+        <div class="feature-card" data-delay="2">
+          <div class="feature-icon-wrap" style="--c:#D97706">
+            <span class="feature-icon">📊</span>
+          </div>
+          <h3>Learning Level</h3>
+          <p>Identify yourself as a Beginner, Intermediate, or Advanced learner. Honest self-assessment makes groups stronger and sessions richer.</p>
+        </div>
+
+        <div class="feature-card" data-delay="3">
+          <div class="feature-icon-wrap" style="--c:#DC2626">
+            <span class="feature-icon">👥</span>
+          </div>
+          <h3>Auto Group Formation</h3>
+          <p>Our algorithm automatically creates balanced 3-member groups — one from each skill level — so every session has a natural teacher and eager learners.</p>
+        </div>
+
+        <div class="feature-card" data-delay="4">
+          <div class="feature-icon-wrap" style="--c:#0891B2">
+            <span class="feature-icon">💬</span>
+          </div>
+          <h3>Private Group Chat</h3>
+          <p>Each group gets a secure private chat room to discuss topics, share resources, ask questions, and collaborate outside of sessions.</p>
+        </div>
+
+        <div class="feature-card" data-delay="5">
+          <div class="feature-icon-wrap" style="--c:#7C3AED">
+            <span class="feature-icon">⏱️</span>
+          </div>
+          <h3>30-Min Teaching Sessions</h3>
+          <p>Structured 30-minute sessions keep learning focused. The advanced student teaches, while others ask questions and build understanding in real-time.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section how-it-works" id="how-it-works">
+    <div class="container">
+      <div class="section-tag">Process</div>
+      <h2 class="section-title">Up and running in <span class="accent">6 simple steps</span></h2>
+      <div class="steps-wrapper">
+        <div class="steps-line"></div>
+        <div class="steps-grid">
+
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-body">
+              <h3>Log In With Your ID</h3>
+              <p>Enter your college student ID to access the platform. Secure, fast, and tied to your institution.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-body">
+              <h3>Select Department & Course</h3>
+              <p>Pick your department and the specific course you want to study. The app filters content just for you.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-body">
+              <h3>Choose Your Level</h3>
+              <p>Select Beginner, Intermediate, or Advanced. Be honest — the mix is what makes the magic happen.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">04</div>
+            <div class="step-body">
+              <h3>Smart Group Is Created</h3>
+              <p>The system pairs you with one Beginner and one Advanced peer (or vice versa) for perfectly balanced learning.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">05</div>
+            <div class="step-body">
+              <h3>Advanced Student Teaches</h3>
+              <p>The advanced member leads the 30-minute session, reinforcing their own knowledge while helping others grow.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">06</div>
+            <div class="step-body">
+              <h3>Quiz & Learning Games</h3>
+              <p>After the session, everyone takes a quick quiz and plays learning games to solidify what was covered.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE LEARNING -->
+  <section class="section interactive" id="interactive">
+    <div class="container">
+      <div class="interactive-grid">
+        <div class="interactive-text">
+          <div class="section-tag">Interactive Learning</div>
+          <h2 class="section-title">Learning that actually <span class="accent">sticks</span></h2>
+          <p>StudyCircle goes beyond passive reading. Every session ends with engaging activities that test and reinforce understanding — making knowledge permanent.</p>
+          <div class="interactive-features">
+            <div class="int-feature">
+              <div class="int-icon">🎯</div>
+              <div>
+                <h4>Post-Session Quizzes</h4>
+                <p>Timed quizzes after every session to test retention and identify gaps while the topic is still fresh.</p>
+              </div>
+            </div>
+            <div class="int-feature">
+              <div class="int-icon">🧩</div>
+              <div>
+                <h4>Drag & Drop Games</h4>
+                <p>Interactive matching and ordering games make complex topics fun and memorable for every skill level.</p>
+              </div>
+            </div>
+            <div class="int-feature">
+              <div class="int-icon">🔄</div>
+              <div>
+                <h4>Peer Knowledge Sharing</h4>
+                <p>Students share notes, diagrams, and summaries inside the group — building a mini knowledge base for the course.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="interactive-visual">
+          <div class="quiz-card">
+            <div class="quiz-header">
+              <span class="quiz-title">Quick Quiz</span>
+              <span class="quiz-timer">0:45</span>
+            </div>
+            <p class="quiz-question">Which data structure uses LIFO ordering?</p>
+            <div class="quiz-options">
+              <button class="quiz-opt">Queue</button>
+              <button class="quiz-opt correct" id="correctOpt">Stack ✓</button>
+              <button class="quiz-opt">Linked List</button>
+              <button class="quiz-opt">Heap</button>
+            </div>
+            <div class="quiz-score">
+              <span>Group Score</span>
+              <div class="score-bar"><div class="score-fill" id="scoreFill"></div></div>
+              <span class="score-pct">87%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMIN & PROGRESS -->
+  <section class="section admin" id="admin">
+    <div class="container">
+      <div class="section-tag">Admin & Progress</div>
+      <h2 class="section-title">Structure that keeps everyone <span class="accent">on track</span></h2>
+      <div class="admin-grid">
+        <div class="admin-card">
+          <div class="admin-icon">📋</div>
+          <h3>Syllabus Submission</h3>
+          <p>Advanced students submit their teaching syllabus to the admin weekly, ensuring sessions are structured, relevant, and aligned to the course curriculum.</p>
+        </div>
+        <div class="admin-card">
+          <div class="admin-icon">🎯</div>
+          <h3>Weekly Goals</h3>
+          <p>Each group sets clear weekly learning goals approved by the admin. This creates accountability and keeps every session purposeful and outcome-driven.</p>
+        </div>
+        <div class="admin-card">
+          <div class="admin-icon">📝</div>
+          <h3>Monthly Tests</h3>
+          <p>Formal monthly assessments are conducted by the admin to measure actual progress, validate learning outcomes, and reward top performers across the platform.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERBOARD -->
+  <section class="section leaderboard" id="leaderboard">
+    <div class="container">
+      <div class="section-tag">Leaderboard</div>
+      <h2 class="section-title">Compete, achieve, and <span class="accent">get recognized</span></h2>
+      <p class="section-sub">The best-performing group in each department earns a spot on the department dashboard — visible to all students and faculty.</p>
+      <div class="leaderboard-wrap">
+        <div class="lb-dept-tabs">
+          <button class="lb-tab active" data-dept="cs">Computer Science</button>
+          <button class="lb-tab" data-dept="mech">Mechanical</button>
+          <button class="lb-tab" data-dept="ee">Electronics</button>
+        </div>
+        <div class="lb-table">
+          <div class="lb-row lb-header">
+            <span>Rank</span>
+            <span>Group</span>
+            <span>Members</span>
+            <span>Score</span>
+            <span>Sessions</span>
+          </div>
+          <div class="lb-row lb-top">
+            <span class="rank-badge gold">🥇 1</span>
+            <span>Group Alpha</span>
+            <span>Arun, Priya, Dev</span>
+            <span>2840 pts</span>
+            <span>24 sessions</span>
+          </div>
+          <div class="lb-row">
+            <span class="rank-badge silver">🥈 2</span>
+            <span>Group Nova</span>
+            <span>Meera, Kiran, Sam</span>
+            <span>2610 pts</span>
+            <span>22 sessions</span>
+          </div>
+          <div class="lb-row">
+            <span class="rank-badge bronze">🥉 3</span>
+            <span>Group Spark</span>
+            <span>Tara, Ravi, Leo</span>
+            <span>2390 pts</span>
+            <span>20 sessions</span>
+          </div>
+          <div class="lb-row">
+            <span class="rank-badge">4</span>
+            <span>Group Delta</span>
+            <span>Nia, Vik, Asha</span>
+            <span>2100 pts</span>
+            <span>18 sessions</span>
+          </div>
+          <div class="lb-row">
+            <span class="rank-badge">5</span>
+            <span>Group Zenith</span>
+            <span>Raj, Pooja, Chris</span>
+            <span>1980 pts</span>
+            <span>17 sessions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta-section" id="cta">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-orb cta-orb-1"></div>
+        <div class="cta-orb cta-orb-2"></div>
+        <h2 class="cta-title">Your study group is<br/>waiting for <span class="accent">you</span></h2>
+        <p class="cta-sub">Join thousands of students who are learning faster, remembering more, and helping each other reach their academic goals.</p>
+        <div class="cta-actions">
+          <a href="#" class="btn btn-primary btn-lg">
+            <span>Get Started — It's Free</span>
+            <svg viewBox="0 0 20 20" fill="none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </a>
+          <p class="cta-note">No credit card required · Available on iOS & Android</p>
+        </div>
+        <div class="cta-avatars">
+          <div class="cta-av" style="background:#7C3AED">A</div>
+          <div class="cta-av" style="background:#059669">M</div>
+          <div class="cta-av" style="background:#D97706">R</div>
+          <div class="cta-av" style="background:#DC2626">S</div>
+          <div class="cta-av" style="background:#0891B2">P</div>
+          <span class="cta-av-more">+12,400 students</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <span class="logo-icon">◎</span>
+            StudyCircle
+          </a>
+          <p>The peer-learning platform built for college students who believe teaching is the best way to learn.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>App</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#leaderboard">Leaderboard</a></li>
+            <li><a href="#cta">Download</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>For Students</h4>
+          <ul>
+            <li><a href="#">Getting Started</a></li>
+            <li><a href="#">Study Tips</a></li>
+            <li><a href="#">Group Guidelines</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@studycircle.app">hello@studycircle.app</a></li>
+            <li><a href="#">Support Center</a></li>
+            <li><a href="#">Partner with Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 StudyCircle. Made with ❤️ for students everywhere.</p>
+        <p>Learn together · Grow together · Rise together</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
