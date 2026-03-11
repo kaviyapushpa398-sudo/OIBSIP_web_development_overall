@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kav — CS Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<style>
+/* =============================================
+   KAV PORTFOLIO — Embedded CSS
+   Dark theme · Syne + DM Sans · Cyan/Violet accent
+   ============================================= */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:        #090d13;
+  --bg2:       #0e1420;
+  --bg3:       #121923;
+  --surface:   #161e2c;
+  --border:    #1f2d42;
+  --accent:    #00d4ff;
+  --accent2:   #7c3aed;
+  --accent3:   #06ffa5;
+  --text:      #e2e8f0;
+  --muted:     #7a8ea8;
+  --heading:   #ffffff;
+  --radius:    14px;
+  --radius-lg: 22px;
+  --shadow:    0 8px 40px rgba(0,0,0,.5);
+  --glow:      0 0 30px rgba(0,212,255,.18);
+  --transition: .3s cubic-bezier(.4,0,.2,1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+h1,h2,h3,h4,h5 {
+  font-family: 'Syne', sans-serif;
+  color: var(--heading);
+  line-height: 1.2;
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; }
+ul { list-style: none; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 4px; }
+
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+.accent { color: var(--accent); }
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: .95rem;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,.08);
+  opacity: 0;
+  transition: opacity .25s;
+}
+.btn:hover::after { opacity: 1; }
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(0,212,255,.3);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,212,255,.45); }
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+.btn-outline:hover { background: rgba(0,212,255,.1); transform: translateY(-2px); }
+
+/* ── NAVBAR ── */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+#navbar.scrolled {
+  background: rgba(9,13,19,.88);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 2px 24px rgba(0,0,0,.5);
+  padding: 14px 48px;
+}
+.nav-brand { font-family: 'Syne', sans-serif; font-size: 1.9rem; font-weight: 800; color: var(--heading); }
+.nav-links { display: flex; gap: 36px; }
+.nav-link {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: .9rem;
+  color: var(--muted);
+  letter-spacing: .04em;
+  transition: color .25s;
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width .3s;
+}
+.nav-link:hover, .nav-link.active { color: var(--accent); }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 10; }
+.hamburger span { display: block; width: 26px; height: 2px; background: var(--text); border-radius: 2px; transition: var(--transition); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  padding: 120px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.grid-overlay {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,212,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: .35;
+  animation: blobFloat 8s ease-in-out infinite;
+}
+.blob-1 { width: 420px; height: 420px; background: var(--accent2); top: -100px; right: 5%; animation-delay: 0s; }
+.blob-2 { width: 300px; height: 300px; background: var(--accent); bottom: -80px; left: 10%; animation-delay: 3s; }
+.blob-3 { width: 200px; height: 200px; background: var(--accent3); top: 40%; right: 35%; animation-delay: 6s; }
+@keyframes blobFloat {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+.hero-content { max-width: 600px; z-index: 1; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,212,255,.1);
+  border: 1px solid rgba(0,212,255,.25);
+  color: var(--accent);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  margin-bottom: 24px;
+  animation: fadeUp .8s ease both;
+}
+.pulse-dot {
+  width: 8px; height: 8px;
+  background: var(--accent3);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(6,255,165,.4);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(6,255,165,.4); }
+  70%  { box-shadow: 0 0 0 8px rgba(6,255,165,0); }
+  100% { box-shadow: 0 0 0 0 rgba(6,255,165,0); }
+}
+.hero-name {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 800;
+  margin-bottom: 12px;
+  animation: fadeUp .9s .1s ease both;
+}
+.hero-roles {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  animation: fadeUp .9s .2s ease both;
+}
+.role-static { color: var(--muted); font-size: 1.1rem; }
+.role-divider { color: var(--accent2); font-size: 1.2rem; }
+.role-typed { color: var(--accent); font-size: 1.1rem; font-weight: 600; }
+.cursor-blink { color: var(--accent); font-weight: 300; animation: blink .75s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.hero-tagline {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--heading);
+  margin-bottom: 16px;
+  animation: fadeUp .9s .3s ease both;
+}
+.hero-tagline em { color: var(--accent); font-style: normal; }
+.hero-intro {
+  color: var(--muted);
+  font-size: 1rem;
+  max-width: 480px;
+  margin-bottom: 36px;
+  animation: fadeUp .9s .4s ease both;
+}
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+  animation: fadeUp .9s .5s ease both;
+}
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  animation: fadeUp .9s .6s ease both;
+}
+.stat { text-align: center; }
+.stat-num {
+  display: block;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.stat-label { font-size: .8rem; color: var(--muted); }
+.stat-divider { width: 1px; height: 40px; background: var(--border); }
+
+.hero-visual { z-index: 1; animation: fadeUp 1s .3s ease both; }
+.code-window {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow), var(--glow);
+  overflow: hidden;
+  min-width: 380px;
+  max-width: 440px;
+}
+.code-window-bar {
+  background: var(--bg2);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.red    { background: #ff5f57; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green  { background: #28c940; }
+.window-title { margin-left: auto; margin-right: auto; font-size: .8rem; color: var(--muted); }
+.code-body {
+  padding: 24px;
+  font-family: 'Courier New', monospace;
+  font-size: .82rem;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre;
+  overflow-x: auto;
+}
+.c-kw  { color: #c792ea; }
+.c-cls { color: #82aaff; }
+.c-fn  { color: #82aaff; }
+.c-str { color: var(--accent3); }
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px; height: 40px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  animation: bounce 2s infinite;
+  transition: color .25s, border-color .25s;
+}
+.scroll-indicator:hover { color: var(--accent); border-color: var(--accent); }
+@keyframes bounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ── SECTIONS ── */
+.section { padding: 110px 0; position: relative; }
+.section:nth-child(even) { background: var(--bg2); }
+.section-header { text-align: center; margin-bottom: 64px; }
+.section-tag {
+  display: inline-block;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(0,212,255,.1);
+  border: 1px solid rgba(0,212,255,.2);
+  padding: 4px 14px;
+  border-radius: 50px;
+  margin-bottom: 14px;
+}
+.section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 12px; }
+.section-sub { color: var(--muted); max-width: 520px; margin: 0 auto; font-size: .98rem; }
+
+/* ── ABOUT ── */
+.about-grid { display: grid; grid-template-columns: 340px 1fr; gap: 64px; align-items: start; }
+.profile-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px 28px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.profile-img-wrapper { position: relative; width: 160px; height: 160px; margin: 0 auto 24px; }
+.profile-placeholder {
+  width: 160px; height: 160px;
+  background: linear-gradient(135deg, var(--accent2), var(--accent));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: #fff;
+}
+.profile-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid;
+  animation: ringPulse 3s ease-in-out infinite;
+}
+.ring-1 { inset: -8px; border-color: rgba(0,212,255,.4); animation-delay: 0s; }
+.ring-2 { inset: -16px; border-color: rgba(124,58,237,.3); animation-delay: 1s; }
+@keyframes ringPulse {
+  0%,100% { opacity: .6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+.profile-info h3 { font-size: 1.5rem; margin-bottom: 4px; }
+.profile-info p { color: var(--muted); font-size: .9rem; margin-bottom: 16px; }
+.profile-badges { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.badge {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: .78rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.about-lead { font-size: 1.1rem; color: var(--text); margin-bottom: 16px; font-weight: 500; }
+.about-body { color: var(--muted); margin-bottom: 14px; font-size: .97rem; }
+.about-cards { margin-top: 32px; display: flex; flex-direction: column; gap: 14px; }
+.about-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  transition: var(--transition);
+}
+.about-card:hover { border-color: var(--accent); transform: translateX(6px); box-shadow: var(--glow); }
+.about-card i { font-size: 1.4rem; color: var(--accent); margin-top: 2px; flex-shrink: 0; }
+.about-card strong { display: block; font-family: 'Syne', sans-serif; margin-bottom: 2px; }
+.about-card p { color: var(--muted); font-size: .85rem; }
+
+/* ── SKILLS ── */
+.skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+.skill-category {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: var(--transition);
+}
+.skill-category:hover { border-color: rgba(0,212,255,.3); box-shadow: var(--glow); }
+.skill-cat-header { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+.cat-icon {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: .95rem;
+  flex-shrink: 0;
+}
+.skill-cat-header h3 { font-size: 1rem; font-weight: 700; }
+.skill-items { display: flex; flex-direction: column; gap: 18px; }
+.skill-item { display: flex; align-items: center; gap: 12px; }
+.skill-icon-wrap {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.python  { background: rgba(55,118,171,.2);  color: #3776ab; }
+.js      { background: rgba(240,219,79,.15); color: #f0db4f; }
+.sql     { background: rgba(0,150,200,.15);  color: #0096c8; }
+.html    { background: rgba(228,77,38,.15);  color: #e44d26; }
+.css     { background: rgba(21,114,182,.15); color: #1572b6; }
+.git     { background: rgba(240,80,50,.15);  color: #f05032; }
+.github  { background: rgba(255,255,255,.1); color: var(--text); }
+.vscode  { background: rgba(0,122,204,.15);  color: #007acc; }
+.ds      { background: rgba(124,58,237,.15); color: #7c3aed; }
+.dbms    { background: rgba(0,212,255,.12);  color: var(--accent); }
+.ps      { background: rgba(6,255,165,.1);   color: var(--accent3); }
+.dsa     { background: rgba(124,58,237,.15); color: #7c3aed; }
+.skill-info { flex: 1; }
+.skill-name { display: block; font-size: .85rem; font-weight: 600; margin-bottom: 6px; }
+.skill-bar { height: 5px; background: var(--bg); border-radius: 5px; overflow: hidden; }
+.skill-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 5px;
+  transition: width 1.2s cubic-bezier(.4,0,.2,1);
+}
+.skill-pct { font-size: .78rem; color: var(--muted); font-weight: 600; min-width: 32px; text-align: right; }
+
+/* ── CERTIFICATIONS ── */
+.certs-section { background: var(--bg); }
+.certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.cert-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+.cert-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0,212,255,.35);
+  box-shadow: 0 20px 60px rgba(0,0,0,.4), var(--glow);
+}
+.cert-img-wrap { position: relative; }
+.cert-img-placeholder {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  background: linear-gradient(135deg, var(--bg2), var(--bg3));
+  border-bottom: 1px solid var(--border);
+  color: var(--accent2);
+  transition: transform .4s;
+}
+.cert-img-placeholder.web  { color: #e44d26; }
+.cert-img-placeholder.sql  { color: #0096c8; }
+.cert-img-placeholder.git  { color: #f05032; }
+.cert-img-placeholder.js   { color: #f0db4f; }
+.cert-img-placeholder.dsa  { color: var(--accent); }
+.cert-card:hover .cert-img-placeholder { transform: scale(1.05); }
+.cert-badge {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: linear-gradient(135deg, var(--accent3), var(--accent));
+  color: #000;
+  font-size: .7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 50px;
+}
+.cert-body { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.cert-body h4 { font-size: 1rem; font-weight: 700; }
+.cert-platform { color: var(--accent); font-size: .82rem; display: flex; align-items: center; gap: 5px; font-weight: 500; }
+.cert-desc { color: var(--muted); font-size: .83rem; flex: 1; }
+.cert-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--accent);
+  border: 1px solid rgba(0,212,255,.3);
+  padding: 8px 14px;
+  border-radius: 50px;
+  transition: var(--transition);
+  width: fit-content;
+}
+.cert-btn:hover { background: rgba(0,212,255,.1); transform: translateX(3px); }
+
+/* ── CONTACT ── */
+.contact-section { background: var(--bg2); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: start; }
+.contact-links { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+.contact-link-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  transition: var(--transition);
+}
+.contact-link-card:hover { border-color: var(--accent); transform: translateX(6px); box-shadow: var(--glow); }
+.contact-link-card > div strong { display: block; font-family: 'Syne', sans-serif; font-size: .9rem; margin-bottom: 2px; }
+.contact-link-card > div span { color: var(--muted); font-size: .83rem; }
+.contact-link-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.email-icon    { background: rgba(0,212,255,.15); color: var(--accent); }
+.github-icon   { background: rgba(255,255,255,.08); color: var(--text); }
+.linkedin-icon { background: rgba(0,119,181,.2); color: #0077b5; }
+.contact-link-arrow { margin-left: auto; color: var(--muted); font-size: .85rem; transition: transform .25s; }
+.contact-link-card:hover .contact-link-arrow { transform: translateX(4px); color: var(--accent); }
+.contact-quote {
+  background: var(--bg);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px;
+}
+.quote-icon { color: var(--accent2); font-size: 1.2rem; margin-bottom: 8px; display: block; }
+.contact-quote p { color: var(--muted); font-style: italic; font-size: .9rem; }
+.contact-form-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  box-shadow: var(--shadow);
+}
+.contact-form { display: flex; flex-direction: column; gap: 22px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group label { font-size: .83rem; font-weight: 600; color: var(--text); letter-spacing: .03em; }
+.input-wrap { position: relative; display: flex; align-items: center; }
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--muted);
+  font-size: .85rem;
+  pointer-events: none;
+  transition: color .25s;
+}
+.input-wrap:focus-within .input-icon { color: var(--accent); }
+.input-wrap input,
+.input-wrap textarea {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 13px 14px 13px 40px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: .9rem;
+  transition: border-color .25s, box-shadow .25s;
+  resize: none;
+  outline: none;
+}
+.input-wrap textarea { padding-top: 13px; }
+.textarea-wrap { align-items: flex-start; }
+.textarea-wrap .input-icon { top: 14px; }
+.input-wrap input:focus,
+.input-wrap textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,212,255,.12); }
+.input-wrap input::placeholder,
+.input-wrap textarea::placeholder { color: var(--muted); }
+.submit-btn { align-self: flex-start; }
+
+/* ── FOOTER ── */
+.footer { background: var(--bg); border-top: 1px solid var(--border); padding: 32px 48px; }
+.footer-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-brand { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--heading); }
+.footer-copy { color: var(--muted); font-size: .85rem; }
+.footer-socials { display: flex; gap: 12px; }
+.social-icon {
+  width: 40px; height: 40px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: .95rem;
+  transition: var(--transition);
+}
+.social-icon:hover { background: var(--accent); border-color: var(--accent); color: #000; transform: translateY(-3px); }
+
+/* ── BACK TO TOP ── */
+.back-to-top {
+  position: fixed;
+  bottom: 32px; right: 32px;
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .3s, transform .3s;
+  z-index: 999;
+  box-shadow: 0 4px 20px rgba(0,212,255,.3);
+}
+.back-to-top.visible { opacity: 1; transform: translateY(0); }
+.back-to-top:hover { transform: translateY(-4px); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal-up, .reveal-left, .reveal-right {
+  opacity: 0;
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal-up    { transform: translateY(40px); }
+.reveal-left  { transform: translateX(-40px); }
+.reveal-right { transform: translateX(40px); }
+.revealed { opacity: 1 !important; transform: translate(0) !important; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero { padding: 120px 32px 80px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-image-col { display: flex; justify-content: center; }
+  .profile-card { max-width: 360px; }
+  .certs-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 860px) {
+  #navbar { padding: 16px 24px; }
+  #navbar.scrolled { padding: 12px 24px; }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    inset: 0 0 0 30%;
+    background: rgba(9,13,19,.96);
+    backdrop-filter: blur(20px);
+    padding: 100px 40px 40px;
+    gap: 28px;
+    z-index: 9;
+    border-left: 1px solid var(--border);
+  }
+  .nav-links.open { display: flex; animation: fadeUp .3s ease; }
+  .nav-link { font-size: 1.2rem; }
+  .hamburger { display: flex; }
+  .hero { flex-direction: column; padding: 110px 24px 60px; text-align: center; }
+  .hero-roles { justify-content: center; }
+  .hero-actions { justify-content: center; }
+  .hero-stats { justify-content: center; }
+  .hero-intro { margin: 0 auto 36px; }
+  .code-window { min-width: unset; width: 100%; max-width: 400px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .about-grid { gap: 40px; }
+}
+@media (max-width: 600px) {
+  .section { padding: 80px 0; }
+  .certs-grid { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .contact-form-wrap { padding: 24px; }
+  .code-window { min-width: unset; }
+}
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-brand">KAVIYA B<span class="accent">.</span></div>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HOME -->
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <div class="grid-overlay"></div>
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        Open to opportunities
+      </div>
+
+      <div>
+        <img src="C:\Users\kaviy\OneDrive\Desktop\Task1 portfolio\kavya\jpeg" alt="">
+      </div>
+
+
+
+      <h1 class="hero-name">Hi, I'm <span class="gradient-text">Kaviya B</span></h1>
+      <div class="hero-roles">
+        <span class="role-static">Computer Science Student</span>
+        <span class="role-divider">|</span>
+        <span class="role-typed" id="typedText"></span><span class="cursor-blink">|</span>
+      </div>
+      <p class="hero-tagline">Turning ideas into <em>code</em> and problems into <em>solutions.</em></p>
+      <p class="hero-intro">I am a passionate Computer Science student who enjoys building real‑world applications and exploring new technologies. I love solving problems through programming and continuously improving my technical skills.</p>
+      <div class="hero-actions">
+        <a href="#skills" class="btn btn-primary"><i class="fas fa-code"></i> View Projects</a>
+        <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Projects</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">5+</span><span class="stat-label">Certifications</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">3+</span><span class="stat-label">Languages</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="code-window">
+        <div class="code-window-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="window-title">kav.py</span>
+        </div>
+        <pre class="code-body"><span class="c-kw">class</span> <span class="c-cls">Developer</span>:
+  <span class="c-kw">def</span> <span class="c-fn">__init__</span>(self):
+    self.name    = <span class="c-str">"Kaviya B"</span>
+    self.role    = <span class="c-str">"CS Student"</span>
+    self.passion = <span class="c-str">"Building things"</span>
+    self.skills  = [
+      <span class="c-str">"C"</span>, <span class="c-str">"JavaScript"</span>,
+      <span class="c-str">"Python"</span>, <span class="c-str">"JavaScript"</span>,
+      <span class="c-str">"C++.Java"</span>, <span class="c-str">"SQL"</span>,
+      <span class="c-str">"Web Dev"</span>, <span class="c-str">"SQL"</span>
+    ]
+
+  <span class="c-kw">def</span> <span class="c-fn">solve</span>(self, problem):
+    <span class="c-kw">while</span> <span class="c-kw">not</span> solved:
+      self.learn()
+      self.code()
+      self.iterate()
+    <span class="c-kw">return</span> <span class="c-str">"solution ✓"</span>
+
+<span class="c-cls">kav</span> = Developer()
+<span class="c-fn">print</span>(kav.solve(<span class="c-str">"any challenge"</span>))</pre>
+      </div>
+    </div>
+    <a href="#about" class="scroll-indicator" aria-label="Scroll down">
+      <i class="fas fa-chevron-down"></i>
+    </a>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Who I Am</span>
+        <h2 class="section-title">About <span class="gradient-text">Me</span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-image-col reveal-left">
+          <div class="profile-card">
+            <div class="profile-img-wrapper">
+              <div class="profile-placeholder"><i class="fas fa-user-graduate"></i></div>
+              <div class="profile-ring ring-1"></div>
+              <div class="profile-ring ring-2"></div>
+            </div>
+            <div class="profile-info">
+              <h3>Kav</h3>
+              <p>Computer Science Student</p>
+              <div class="profile-badges">
+                <span class="badge"><i class="fas fa-map-marker-alt"></i> India</span>
+                <span class="badge"><i class="fas fa-graduation-cap"></i> CS Major</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-text-col reveal-right">
+          <p class="about-lead">I am a Computer Science student with a strong interest in software development and modern technology. I enjoy learning new programming languages and building projects that solve real problems.</p>
+          <p class="about-body">My interests include web development, programming, and exploring innovative technologies. I believe that continuous learning and practical experience are the keys to becoming a successful developer.</p>
+          <p class="about-body">My goal is to become a skilled software developer and contribute to building impactful digital solutions.</p>
+          <div class="about-cards">
+            <div class="about-card">
+              <i class="fas fa-laptop-code"></i>
+              <div><strong>Web Developer</strong><p>Building responsive, modern web apps</p></div>
+            </div>
+            <div class="about-card">
+              <i class="fas fa-brain"></i>
+              <div><strong>Problem Solver</strong><p>Turning complex challenges into elegant code</p></div>
+            </div>
+            <div class="about-card">
+              <i class="fas fa-rocket"></i>
+              <div><strong>Fast Learner</strong><p>Always exploring new technologies</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What I Know</span>
+        <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category reveal-up">
+          <div class="skill-cat-header"><span class="cat-icon"><i class="fas fa-terminal"></i></span><h3>Programming Languages</h3></div>
+          <div class="skill-items">
+            <div class="skill-item">
+              <div class="skill-icon-wrap python"><i class="fab fa-python"></i></div>
+              <div class="skill-info"><span class="skill-name">Python</span><div class="skill-bar"><div class="skill-fill" data-width="88"></div></div></div>
+              <span class="skill-pct">88%</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrap js"><i class="fab fa-js-square"></i></div>
+              <div class="skill-info"><span class="skill-name">JavaScript</span><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
+              <span class="skill-pct">80%</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrap sql"><i class="fas fa-database"></i></div>
+              <div class="skill-info"><span class="skill-name">SQL</span><div class="skill-bar"><div class="skill-fill" data-width="75"></div></div></div>
+              <span class="skill-pct">75%</span>
+            </div>
+          </div>
+        </div>
+        <div class="skill-category reveal-up" style="animation-delay:.1s">
+          <div class="skill-cat-header"><span class="cat-icon"><i class="fas fa-globe"></i></span><h3>Web Development</h3></div>
+          <div class="skill-items">
+            <div class="skill-item">
+              <div class="skill-icon-wrap html"><i class="fab fa-html5"></i></div>
+              <div class="skill-info"><span class="skill-name">HTML</span><div class="skill-bar"><div class="skill-fill" data-width="92"></div></div></div>
+              <span class="skill-pct">92%</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrap css"><i class="fab fa-css3-alt"></i></div>
+              <div class="skill-info"><span class="skill-name">CSS</span><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
+              <span class="skill-pct">85%</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrap js"><i class="fab fa-js-square"></i></div>
+              <div class="skill-info"><span class="skill-name">JavaScript</span><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
+              <span class="skill-pct">80%</span>
+            </div>
+          </div>
+        </div>
+        <div class="skill-category reveal-up" style="animation-delay:.2s">
+          <div class="skill-cat-header"><span class="cat-icon"><i class="fas fa-tools"></i></span><h3>Tools & Technologies</h3></div>
+          <div class="skill-items">
+            <div class="skill-item">
+              <div class="skill-icon-wrap git"><i class="fab fa-git-alt"></i></div>
+              <div class="skill-info"><span class="skill-name">Git</span><div class="skill-bar"><div class="skill-fill" data-width="82"></div></div></div>
+              <span class="skill-pct">82%</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrap github"><i class="fab fa-github"></i></div>
+              <div class="skill-info"><span class="skill-name">GitHub</span><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
+              <span class="skill-pct">80%</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrap vscode"><i class="fas fa-code"></i></div>
+              <div class="skill-info"><span class="skill-name">VS Code</span><div class="skill-bar"><div class="skill-fill" data-width="90"></div></div></div>
+              <span class="skill-pct">90%</span>
+            </div>
+          </div>
+        </div>
+        <div class="skill-category reveal-up" style="animation-delay:.3s">
+          <div class="skill-cat-header"><span class="cat-icon"><i class="fas fa-lightbulb"></i></span><h3>Concepts</h3></div>
+          <div class="skill-items">
+            <div class="skill-item">
+              <div class="skill-icon-wrap ds"><i class="fas fa-project-diagram"></i></div>
+              <div class="skill-info"><span class="skill-name">Data Structures</span><div class="skill-bar"><div class="skill-fill" data-width="78"></div></div></div>
+              <span class="skill-pct">78%</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrap dbms"><i class="fas fa-server"></i></div>
+              <div class="skill-info"><span class="skill-name">DBMS</span><div class="skill-bar"><div class="skill-fill" data-width="74"></div></div></div>
+              <span class="skill-pct">74%</span>
+            </div>
+            <div class="skill-item">
+              <div class="skill-icon-wrap ps"><i class="fas fa-puzzle-piece"></i></div>
+              <div class="skill-info"><span class="skill-name">Problem Solving</span><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
+              <span class="skill-pct">85%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+  <!-- CONTACT -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title">Contact <span class="gradient-text">Me</span></h2>
+        <p class="section-sub">Feel free to connect with me for collaboration, projects, or learning opportunities.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+          <div class="contact-links">
+            <a href="mailto:kaviyapushpa398@gmail.com" class="contact-link-card">
+              <div class="contact-link-icon email-icon"><i class="fas fa-envelope"></i></div>
+              <div><strong>Email</strong><span>kaviyapushpa398@gmail.com</span></div>
+              <i class="fas fa-arrow-right contact-link-arrow"></i>
+            </a>
+            <a href="https://github.com/kaviyapushpa398-sudo" target="_blank" class="contact-link-card">
+              <div class="contact-link-icon github-icon"><i class="fab fa-github"></i></div>
+              <div><strong>GitHub</strong><span>github.com/kav</span></div>
+              <i class="fas fa-arrow-right contact-link-arrow"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/kaviya-b-b52164364?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="contact-link-card">
+              <div class="contact-link-icon linkedin-icon"><i class="fab fa-linkedin-in"></i></div>
+              <div><strong>LinkedIn</strong><span>linkedin.com/in/kav</span></div>
+              <i class="fas fa-arrow-right contact-link-arrow"></i>
+            </a>
+            <a href="https://www.instagram.com/kaviya_wrv?igsh=MXVma3Y1em51cm52Nw==" target="_blank" class="contact-link-card">
+              <div class="contact-link-icon linkedin-icon"><i class="fab fa-linkedin-in"></i></div>
+              <div><strong>Instagram</strong><span>linkedin.com/in/kav</span></div>
+              <i class="fas fa-arrow-right contact-link-arrow"></i>
+            </a>
+          </div>
+          <div class="contact-quote">
+            <i class="fas fa-quote-left quote-icon"></i>
+            <p>"Great things are built one line of code at a time."</p>
+          </div>
+        </div>
+        <div class="contact-form-wrap reveal-right">
+          <form id="contactForm" class="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <div class="input-wrap">
+                <i class="fas fa-user input-icon"></i>
+                <input type="text" id="name" name="name" placeholder="John Doe" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <div class="input-wrap">
+                <i class="fas fa-envelope input-icon"></i>
+                <input type="email" id="email" name="email" placeholder="john@example.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <div class="input-wrap textarea-wrap">
+                <i class="fas fa-comment input-icon"></i>
+                <textarea id="message" name="message" rows="5" placeholder="Your message here..." required></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary submit-btn">
+              <span class="btn-text"><i class="fas fa-paper-plane"></i> Send Message</span>
+              <span class="btn-success" style="display:none"><i class="fas fa-check"></i> Sent!</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">Kaviya <span class="accent">.</span></div>
+      <p class="footer-copy">© 2026 Kaviya B. All Rights Reserved.</p>
+      <div class="footer-socials">
+        <a href="https://github.com/kaviyapushpa398-sudo" target="_blank" aria-label="GitHub" class="social-icon"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/kaviya-b-b52164364?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" aria-label="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+<script>
+/* =============================================
+   KAV PORTFOLIO — Embedded JavaScript
+   ============================================= */
+
+/* ── NAVBAR SCROLL ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+  highlightNavLink();
+  toggleBackToTop();
+});
+
+/* ── HAMBURGER MENU ── */
+const hamburger = document.getElementById('hamburger');
+const navLinks  = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+  const spans = hamburger.querySelectorAll('span');
+  if (navLinks.classList.contains('open')) {
+    spans[0].style.transform = 'rotate(45deg) translate(5px,5px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(5px,-5px)';
+  } else {
+    spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+  }
+});
+
+navLinks.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+  });
+});
+
+/* ── ACTIVE NAV HIGHLIGHT ── */
+function highlightNavLink() {
+  const sections = document.querySelectorAll('section[id]');
+  const scrollY  = window.scrollY + 120;
+  sections.forEach(sec => {
+    const link = document.querySelector(`.nav-link[href="#${sec.id}"]`);
+    if (!link) return;
+    link.classList.toggle('active', scrollY >= sec.offsetTop && scrollY < sec.offsetTop + sec.offsetHeight);
+  });
+}
+
+/* ── TYPED TEXT EFFECT ── */
+const phrases = [
+  'Aspiring Software Developer',
+  'Web Developer',
+  'Problem Solver',
+  'Python Enthusiast',
+  'Open Source Learner',
+];
+let pIdx = 0, cIdx = 0, deleting = false;
+const typedEl = document.getElementById('typedText');
+
+function typeLoop() {
+  const current = phrases[pIdx];
+  if (!deleting) {
+    typedEl.textContent = current.slice(0, cIdx + 1);
+    cIdx++;
+    if (cIdx === current.length) { deleting = true; setTimeout(typeLoop, 1800); return; }
+    setTimeout(typeLoop, 70);
+  } else {
+    typedEl.textContent = current.slice(0, cIdx - 1);
+    cIdx--;
+    if (cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; setTimeout(typeLoop, 400); return; }
+    setTimeout(typeLoop, 38);
+  }
+}
+setTimeout(typeLoop, 1000);
+
+/* ── SCROLL REVEAL ── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const delay = parseFloat(el.style.animationDelay || '0') * 1000;
+      setTimeout(() => el.classList.add('revealed'), delay);
+      revealObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
+
+/* ── SKILL BAR ANIMATION ── */
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.querySelectorAll('.skill-fill').forEach(fill => {
+      setTimeout(() => { fill.style.width = fill.dataset.width + '%'; }, 200);
+    });
+    skillObserver.unobserve(entry.target);
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.skill-category').forEach(cat => skillObserver.observe(cat));
+
+/* ── BACK TO TOP ── */
+const btt = document.getElementById('backToTop');
+function toggleBackToTop() { btt.classList.toggle('visible', window.scrollY > 400); }
+btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ── CONTACT FORM ── */
+const form = document.getElementById('contactForm');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const btn     = form.querySelector('.submit-btn');
+  const btnText = btn.querySelector('.btn-text');
+  const btnOk   = btn.querySelector('.btn-success');
+  btn.disabled = true;
+  btnText.style.display = 'none';
+  btnOk.style.display   = 'inline-flex';
+  setTimeout(() => {
+    form.reset();
+    btn.disabled = false;
+    btnText.style.display = 'inline-flex';
+    btnOk.style.display   = 'none';
+  }, 2800);
+});
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+/* ── CODE WINDOW GLOW ── */
+const codeWin = document.querySelector('.code-window');
+if (codeWin) {
+  document.addEventListener('mousemove', e => {
+    const rect = codeWin.getBoundingClientRect();
+    const dx = e.clientX - (rect.left + rect.width / 2);
+    const dy = e.clientY - (rect.top  + rect.height / 2);
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist < 400) {
+      const i = 1 - dist / 400;
+      codeWin.style.boxShadow = `0 8px 40px rgba(0,0,0,.5), 0 0 ${30 + i * 40}px rgba(0,212,255,${.18 + i * .25})`;
+    } else {
+      codeWin.style.boxShadow = '';
+    }
+  });
+}
+
+/* ── CERT CARD TILT ── */
+document.querySelectorAll('.cert-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width  / 2;
+    const y = e.clientY - r.top  - r.height / 2;
+    card.style.transform = `perspective(800px) rotateY(${x/18}deg) rotateX(${-y/18}deg) translateY(-8px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+    card.style.transition = 'transform .5s ease, border-color .3s, box-shadow .3s';
+  });
+  card.addEventListener('mouseenter', () => {
+    card.style.transition = 'transform .1s, border-color .3s, box-shadow .3s';
+  });
+});
+
+/* ── INIT ── */
+window.addEventListener('DOMContentLoaded', () => { highlightNavLink(); toggleBackToTop(); });
+</script>
+</body>
+</html>
