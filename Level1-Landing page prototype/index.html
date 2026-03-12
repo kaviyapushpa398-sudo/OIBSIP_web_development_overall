@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudySync — Group Learning Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════ LOGIN PAGE ═══════════════════════════════════════ -->
+  <div id="page-login" class="page active">
+    <div class="phone-shell">
+      <div class="login-bg">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+      </div>
+      <div class="login-content">
+        <div class="brand-mark">
+          <div class="brand-icon">⚡</div>
+          <h1 class="brand-name">StudySync</h1>
+          <p class="brand-tagline">Learn Together, Grow Together</p>
+        </div>
+        <div class="login-card">
+          <h2 class="card-title">Welcome Back</h2>
+          <p class="card-sub">Sign in to join your study group</p>
+          <div class="field-group">
+            <label class="field-label">Student ID</label>
+            <input type="text" id="student-id" class="field-input" placeholder="e.g. STU2024001" />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Department</label>
+            <div class="select-wrap">
+              <select id="department" class="field-input">
+                <option value="">— Select Department —</option>
+                <option value="cs">Computer Science</option>
+                <option value="it">Information Technology</option>
+                <option value="ece">Electronics & Communication</option>
+                <option value="mech">Mechanical Engineering</option>
+                <option value="civil">Civil Engineering</option>
+                <option value="math">Mathematics</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn-primary" onclick="goToCourseSelect()">Continue →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ COURSE SELECTION ═══════════════════════════════════ -->
+  <div id="page-course" class="page">
+    <div class="phone-shell">
+      <div class="top-bar">
+        <button class="back-btn" onclick="goTo('page-login')">‹</button>
+        <span class="top-title">Choose Course</span>
+        <div class="avatar-dot" id="user-avatar">S</div>
+      </div>
+      <div class="scroll-area">
+        <div class="section-hero teal-hero">
+          <p class="hero-dept" id="display-dept">Computer Science</p>
+          <h2 class="hero-heading">Pick Your Course</h2>
+        </div>
+        <div class="course-grid" id="course-grid">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ LEVEL SELECTION ═════════════════════════════════════ -->
+  <div id="page-level" class="page">
+    <div class="phone-shell">
+      <div class="top-bar">
+        <button class="back-btn" onclick="goTo('page-course')">‹</button>
+        <span class="top-title">Your Level</span>
+        <div class="avatar-dot" id="user-avatar2">S</div>
+      </div>
+      <div class="scroll-area">
+        <div class="section-hero coral-hero">
+          <p class="hero-dept" id="display-course">Programming</p>
+          <h2 class="hero-heading">Select Your Level</h2>
+        </div>
+        <div class="level-cards">
+          <div class="level-card beginner-card" onclick="selectLevel('Beginner')">
+            <div class="level-icon">🌱</div>
+            <div class="level-info">
+              <h3>Beginner</h3>
+              <p>Just starting out — foundational concepts</p>
+            </div>
+            <div class="level-badge">NEW</div>
+          </div>
+          <div class="level-card inter-card" onclick="selectLevel('Intermediate')">
+            <div class="level-icon">🔥</div>
+            <div class="level-info">
+              <h3>Intermediate</h3>
+              <p>Building skills — deeper understanding</p>
+            </div>
+            <div class="level-badge mid">MID</div>
+          </div>
+          <div class="level-card advanced-card" onclick="selectLevel('Advanced')">
+            <div class="level-icon">⚡</div>
+            <div class="level-info">
+              <h3>Advanced</h3>
+              <p>Mentor role — lead and teach others</p>
+            </div>
+            <div class="level-badge pro">PRO</div>
+          </div>
+        </div>
+        <div class="info-banner">
+          <span class="info-icon">ℹ️</span>
+          <p>Groups are auto-formed with 1 Beginner + 1 Intermediate + 1 Advanced learner</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ GROUP LOBBY ══════════════════════════════════════════ -->
+  <div id="page-group" class="page">
+    <div class="phone-shell">
+      <div class="top-bar">
+        <button class="back-btn" onclick="goTo('page-level')">‹</button>
+        <span class="top-title">Study Group</span>
+        <button class="icon-btn" onclick="goTo('page-admin')">🛡️</button>
+      </div>
+      <div class="scroll-area">
+        <div class="group-banner">
+          <div class="group-badge-big">G</div>
+          <div class="group-info">
+            <h2 id="group-name-display">Group Alpha</h2>
+            <p id="group-course-display">Programming · CS Dept</p>
+          </div>
+          <div class="timer-pill" id="study-timer">30:00</div>
+        </div>
+
+        <!-- Members -->
+        <div class="section-label">👥 Your Study Group</div>
+        <div class="members-list" id="members-list"></div>
+
+        <!-- Nav tabs -->
+        <div class="tab-bar">
+          <button class="tab active" data-tab="chat" onclick="switchTab('chat', this)">💬 Chat</button>
+          <button class="tab" data-tab="syllabus" onclick="switchTab('syllabus', this)">📋 Syllabus</button>
+          <button class="tab" data-tab="rotation" onclick="switchTab('rotation', this)">🔄 Rotation</button>
+        </div>
+
+        <!-- Chat Tab -->
+        <div class="tab-content active" id="tab-chat">
+          <div class="chat-window" id="chat-window"></div>
+          <div class="chat-input-row">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Message your group…" onkeydown="chatEnter(event)" />
+            <button class="send-btn" onclick="sendMessage()">➤</button>
+          </div>
+        </div>
+
+        <!-- Syllabus Tab -->
+        <div class="tab-content" id="tab-syllabus">
+          <div class="syllabus-note" id="syllabus-lock">
+            <span>🔒</span>
+            <p>Only the <strong>Advanced learner</strong> can submit the syllabus.</p>
+          </div>
+          <div id="syllabus-form" style="display:none">
+            <div class="field-group">
+              <label class="field-label">Week 1 Topic</label>
+              <input type="text" class="field-input" id="week1" placeholder="e.g. Variables & Data Types" />
+            </div>
+            <div class="field-group">
+              <label class="field-label">Week 2 Topic</label>
+              <input type="text" class="field-input" id="week2" placeholder="e.g. Control Structures" />
+            </div>
+            <div class="field-group">
+              <label class="field-label">Week 3 Topic</label>
+              <input type="text" class="field-input" id="week3" placeholder="e.g. Functions & Recursion" />
+            </div>
+            <button class="btn-primary" onclick="submitSyllabus()">Submit to Admin</button>
+          </div>
+          <div id="syllabus-submitted" style="display:none" class="success-banner">
+            ✅ Syllabus submitted for admin review!
+          </div>
+        </div>
+
+        <!-- Rotation Tab -->
+        <div class="tab-content" id="tab-rotation">
+          <div class="section-label" style="margin-top:0">📅 Teaching Rotation</div>
+          <div class="rotation-list" id="rotation-list"></div>
+          <div class="rotation-note">Members rotate teaching duties daily. Advanced learner mentors every session.</div>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-secondary" onclick="goTo('page-quiz')">Start Quiz Session →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ ADMIN PANEL ══════════════════════════════════════════ -->
+  <div id="page-admin" class="page">
+    <div class="phone-shell">
+      <div class="top-bar dark-bar">
+        <button class="back-btn" onclick="goTo('page-group')">‹</button>
+        <span class="top-title">Admin Panel</span>
+        <span class="admin-badge">ADMIN</span>
+      </div>
+      <div class="scroll-area">
+        <div class="admin-hero">
+          <h2>🛡️ Admin Dashboard</h2>
+          <p>Review and approve study plans</p>
+        </div>
+        <div class="section-label">📋 Pending Syllabus Reviews</div>
+        <div id="admin-syllabus-list">
+          <div class="empty-state">No syllabi submitted yet.</div>
+        </div>
+
+        <div class="section-label">📊 Department Overview</div>
+        <div class="dept-stats" id="dept-stats"></div>
+
+        <div class="section-label">📝 Monthly Test Controls</div>
+        <div class="test-control-card">
+          <div class="test-info">
+            <h3>March 2025 Test</h3>
+            <p>Department-wide assessment</p>
+          </div>
+          <button class="btn-primary small-btn" onclick="goTo('page-test')">Launch Test</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ QUIZ / GAMES ═════════════════════════════════════════ -->
+  <div id="page-quiz" class="page">
+    <div class="phone-shell">
+      <div class="top-bar">
+        <button class="back-btn" onclick="goTo('page-group')">‹</button>
+        <span class="top-title">Quiz Time</span>
+        <div class="score-pill" id="quiz-score-pill">0 pts</div>
+      </div>
+      <div class="scroll-area">
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="quiz-fill"></div>
+        </div>
+        <div id="quiz-area"></div>
+        <div id="quiz-result" style="display:none" class="quiz-result-card">
+          <div class="result-emoji">🏆</div>
+          <h2>Quiz Complete!</h2>
+          <p id="result-score-text"></p>
+          <button class="btn-primary" onclick="goTo('page-leaderboard')">View Leaderboard →</button>
+        </div>
+
+        <!-- Drag & Drop Mini Game -->
+        <div id="dragdrop-game" style="display:none" class="drag-section">
+          <h3 class="drag-title">🧩 Match the Concepts</h3>
+          <p class="drag-subtitle">Drag items to their correct category</p>
+          <div class="drag-board" id="drag-board"></div>
+          <button class="btn-primary" onclick="checkDrag()">Check Answers</button>
+          <div id="drag-result" class="drag-result"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ MONTHLY TEST ═════════════════════════════════════════ -->
+  <div id="page-test" class="page">
+    <div class="phone-shell">
+      <div class="top-bar dark-bar">
+        <button class="back-btn" onclick="goTo('page-admin')">‹</button>
+        <span class="top-title">Monthly Test</span>
+        <div class="timer-pill" id="test-timer">20:00</div>
+      </div>
+      <div class="scroll-area">
+        <div class="test-hero">
+          <h2>📝 March Monthly Test</h2>
+          <p id="test-dept-label">Computer Science Department</p>
+        </div>
+        <div id="test-area"></div>
+        <div id="test-result" style="display:none" class="quiz-result-card">
+          <div class="result-emoji">📊</div>
+          <h2>Test Submitted!</h2>
+          <p id="test-score-text"></p>
+          <button class="btn-primary" onclick="goTo('page-leaderboard')">See Leaderboard →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ LEADERBOARD ══════════════════════════════════════════ -->
+  <div id="page-leaderboard" class="page">
+    <div class="phone-shell">
+      <div class="top-bar">
+        <button class="back-btn" onclick="goTo('page-group')">‹</button>
+        <span class="top-title">Leaderboard</span>
+      </div>
+      <div class="scroll-area">
+        <div class="lb-hero">
+          <div class="trophy-big">🏆</div>
+          <h2>Top Performers</h2>
+          <p>Best groups in each department</p>
+        </div>
+        <div class="section-label">🥇 Department Champions</div>
+        <div id="leaderboard-list"></div>
+        <div class="section-label">👑 Your Group Rank</div>
+        <div class="my-rank-card" id="my-rank-card"></div>
+        <div class="action-row">
+          <button class="btn-secondary" onclick="goTo('page-advanced')">Advanced Zone →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ ADVANCED SECTION ═════════════════════════════════════ -->
+  <div id="page-advanced" class="page">
+    <div class="phone-shell">
+      <div class="top-bar dark-bar">
+        <button class="back-btn" onclick="goTo('page-leaderboard')">‹</button>
+        <span class="top-title">Advanced Zone</span>
+        <span class="adv-badge">⚡</span>
+      </div>
+      <div class="scroll-area">
+        <div class="adv-hero">
+          <h2>⚡ Advanced Learners Hub</h2>
+          <p>Challenges, notes & shared resources</p>
+        </div>
+        <div class="section-label">🔥 Coding Challenges</div>
+        <div id="challenges-list"></div>
+        <div class="section-label">📚 Shared Resources</div>
+        <div id="resources-list"></div>
+        <div class="section-label">✏️ Share a Resource</div>
+        <div class="share-form">
+          <input type="text" class="field-input" id="resource-title" placeholder="Resource title…" />
+          <textarea class="field-input" id="resource-body" placeholder="Paste notes, links, or code snippets…" rows="3"></textarea>
+          <button class="btn-primary" onclick="shareResource()">Share with Community</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ TOAST NOTIFICATION ═══════════════════════════════════ -->
+  <div id="toast" class="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
